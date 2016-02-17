@@ -5,17 +5,48 @@
  */
 package savethecity;
 
+import byui.cit260.savethecity.model.Game;
+import byui.cit260.savethecity.model.Player;
+import byui.cit260.savethecity.view.StartProgramView;
+
 /**
  *
  * @author Daniel
  */
 public class SaveTheCity {
 
+    private static Player player;
+    private static Game game;
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        StartProgramView startProgram = new StartProgramView();
+        
+        startProgram.startProgram();
+        
     }
+
+    public static Player getPlayer() {
+        return player;
+    }
+
+    public static void setPlayer(Player player) {
+        SaveTheCity.player = player;
+    }
+
+    public static Game getGame() {
+        return game;
+    }
+
+    public static void setGame(Game game) {
+        SaveTheCity.game = game;
+    }
+    
+    
+    
+    
     
 }
