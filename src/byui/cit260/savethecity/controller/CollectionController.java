@@ -5,6 +5,9 @@
  */
 package byui.cit260.savethecity.controller;
 
+import byui.cit260.savethecity.model.Hero;
+import byui.cit260.savethecity.model.Player;
+
 /**
  *
  * @author Daniel
@@ -20,6 +23,10 @@ public class CollectionController {
         double totalMult = length * width * height;
         
         return totalMult / 3;
+    }
+    
+    public void addHeroToCollection(Hero h, Player p) {
+        p.addHero(h);
     }
     
 }

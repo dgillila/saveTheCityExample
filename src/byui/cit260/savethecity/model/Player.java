@@ -42,6 +42,31 @@ public class Player implements Serializable {
         this.name = name;
     }
 
+    public List<Item> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(List<Item> inventory) {
+        this.inventory = inventory;
+    }
+
+    public List<Hero> getTeam() {
+        return team;
+    }
+
+    public void setTeam(List<Hero> team) {
+        this.team = team;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+    
+    
     @Override
     public int hashCode() {
         int hash = 7;
