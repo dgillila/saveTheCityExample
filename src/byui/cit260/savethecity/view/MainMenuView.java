@@ -13,38 +13,22 @@ import savethecity.SaveTheCity;
  *
  * @author Daniel
  */
-public class MainMenuView {
+public class MainMenuView extends View {
 
-    private final String menu = "\n"
+    public MainMenuView() {
+        super("\n"
             + "\nN - Start new game"
             + "\nL - Load saved game"
             + "\nS - Save current game"
             + "\nH - Help menu"
-            + "\nQ - Quit";
-
-    public MainMenuView() {
-
+            + "\nQ - Quit");
     }
 
-    public void displayMenu() {
+    public boolean doAction(String selection) {
 
-        char selection = ' ';
-
-        do {
-            System.out.println(menu);
-
-            String input = getInput();
-            selection = input.charAt(0);
-
-            doAction(selection);
-
-        } while (selection != 'Q');
-
-    }
-
-    public void doAction(char selection) {
-
-        switch (selection) {
+        char charSel = selection.toUpperCase().charAt(0);
+        
+        switch (charSel) {
             case 'N':
                 startNewGame();
                 break;
@@ -58,38 +42,20 @@ public class MainMenuView {
                 helpMenu();
                 break;
             case 'Q':
-                break;
+                return true;
             default:
                 System.out.println("Invalid option");
                 break;
         }
 
-    }
-
-    public String getInput() {
-        Scanner keyboard = new Scanner(System.in);
-        String input = null;
-        boolean isValid = false;
-
-        while (!isValid) {
-            System.out.println("Please select an option: ");
-            input = keyboard.nextLine();
-            input = input.trim();
-
-            if (input == null || input.length() == 0) {
-                System.out.println("Invalid input - please enter a valid character");
-            } else {
-                isValid = true;
-            }
-        }
-
-        return input.toUpperCase();
+        return false;
     }
 
     private void startNewGame() {
         ProgramController.createNewGame(SaveTheCity.getPlayer());
         
-        System.out.println("CALLED START NEW GAME - NOT IMPLEMENTED YET");
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.display();
     }
 
     private void loadSavedGame() {
@@ -102,7 +68,7 @@ public class MainMenuView {
 
     private void helpMenu() {
         HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.displayMenu();
+        helpMenu.display();
     }
 
 }

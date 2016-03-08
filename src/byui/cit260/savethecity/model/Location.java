@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class Location implements Serializable {
     
-    private String locationType;
+    private LocationType type;
     private String description;
     private Item item;
     private Hero hero;
@@ -22,13 +22,13 @@ public class Location implements Serializable {
     public Location() {
         
     }
-    
-    public String getLocationType() {
-        return locationType;
+
+    public LocationType getType() {
+        return type;
     }
 
-    public void setLocationType(String locationType) {
-        this.locationType = locationType;
+    public void setType(LocationType type) {
+        this.type = type;
     }
 
     public String getDescription() {

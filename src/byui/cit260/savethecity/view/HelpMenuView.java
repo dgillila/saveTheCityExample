@@ -11,37 +11,22 @@ import java.util.Scanner;
  *
  * @author Daniel
  */
-public class HelpMenuView {
-    private final String menu = "\n"
+public class HelpMenuView extends View {
+
+    public HelpMenuView() {
+        super("\n"
             + "\nA - About this game"
             + "\nH - How to play"
             + "\nO - Objective"
             + "\nM - Movement help"
-            + "\nQ - Quit";
-
-    public HelpMenuView() {
-
+            + "\nQ - Quit");
     }
 
-    public void displayMenu() {
+    public boolean doAction(String selection) {
 
-        char selection = ' ';
-
-        do {
-            System.out.println(menu);
-
-            String input = getInput();
-            selection = input.charAt(0);
-
-            doAction(selection);
-
-        } while (selection != 'Q');
-
-    }
-
-    public void doAction(char selection) {
-
-        switch (selection) {
+        char charSel = selection.toUpperCase().charAt(0);
+        
+        switch (charSel) {
             case 'A':
                 aboutGame();
                 break;
@@ -55,32 +40,13 @@ public class HelpMenuView {
                 movementHelp();
                 break;
             case 'Q':
-                break;
+                return true;
             default:
                 System.out.println("Invalid option");
                 break;
         }
-
-    }
-
-    public String getInput() {
-        Scanner keyboard = new Scanner(System.in);
-        String input = null;
-        boolean isValid = false;
-
-        while (!isValid) {
-            System.out.println("Please select an option: ");
-            input = keyboard.nextLine();
-            input = input.trim();
-
-            if (input == null || input.length() == 0) {
-                System.out.println("Invalid input - please enter a valid character");
-            } else {
-                isValid = true;
-            }
-        }
-
-        return input.toUpperCase();
+        
+        return false;
     }
 
     private void aboutGame() {

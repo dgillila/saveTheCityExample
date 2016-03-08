@@ -12,6 +12,7 @@ package byui.cit260.savethecity.model;
 public class Game {
     
     private Player player;
+    private Map map;
 
     public Game() {
     }
@@ -22,6 +23,14 @@ public class Game {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
     }
     
     

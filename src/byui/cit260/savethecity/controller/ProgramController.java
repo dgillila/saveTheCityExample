@@ -6,6 +6,7 @@
 package byui.cit260.savethecity.controller;
 
 import byui.cit260.savethecity.model.Game;
+import byui.cit260.savethecity.model.Map;
 import byui.cit260.savethecity.model.Player;
 import savethecity.SaveTheCity;
 
@@ -27,8 +28,15 @@ public class ProgramController {
     }
 
     public static void createNewGame(Player player) {
+        
         Game g = new Game();
         g.setPlayer(player);
+        
+        Map gameMap = new Map();
+        g.setMap(gameMap);
+        
+        player.setLocation(gameMap.getLocation(0, 0));
+        
         SaveTheCity.setGame(g);
     }
     
