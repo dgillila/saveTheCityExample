@@ -5,10 +5,43 @@
  */
 package byui.cit260.savethecity.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Daniel
  */
-public class Hero {
+public class Hero implements Serializable {
+    
+    private String name;
+    private double hitpoints;
+    private double attackpoints;
+
+    public Hero() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getHitpoints() {
+        return hitpoints;
+    }
+
+    public void setHitpoints(double hitpoints) {
+        this.hitpoints = hitpoints;
+    }
+
+    public double getAttackpoints() {
+        return attackpoints;
+    }
+
+    public void setAttackpoints(double attackpoints) {
+        this.attackpoints = attackpoints;
+    }
     
 }

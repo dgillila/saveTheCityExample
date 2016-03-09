@@ -6,8 +6,11 @@
 package byui.cit260.savethecity.controller;
 
 import byui.cit260.savethecity.model.Game;
+import byui.cit260.savethecity.model.Hero;
 import byui.cit260.savethecity.model.Map;
 import byui.cit260.savethecity.model.Player;
+import java.util.ArrayList;
+import java.util.List;
 import savethecity.SaveTheCity;
 
 /**
@@ -35,9 +38,54 @@ public class ProgramController {
         Map gameMap = new Map();
         g.setMap(gameMap);
         
+        populateMapWithHeroes(gameMap);
+        
         player.setLocation(gameMap.getLocation(0, 0));
         
         SaveTheCity.setGame(g);
+    }
+    
+    public static void populateMapWithHeroes(Map map) {
+        
+        List<Hero> heroes = createHeroList();
+        boolean success = false;
+        
+        for(Hero h : heroes) {
+            
+            do {
+                int row = (int)(Math.random() * Map.NUM_ROWS);
+                int col = (int)(Math.random() * Map.NUM_COLS);
+            
+                 success = false;
+                
+                if(map.getLocation(row, col).getHero() == null) {
+                    map.getLocation(row, col).setHero(h);
+                    success = true;
+                }
+                
+            } while(success == false);
+            
+        }
+        
+    }
+    
+    public static List<Hero> createHeroList() {
+        
+        List<Hero> heroList = new ArrayList<>();
+        
+        Hero superman = new Hero();
+        superman.setName("Superman");
+        superman.setHitpoints(10);
+        superman.setAttackpoints(2);
+        heroList.add(superman);
+        
+        Hero batman = new Hero();
+        batman.setName("Batman");
+        batman.setHitpoints(5);
+        batman.setAttackpoints(4);
+        heroList.add(batman);
+        
+        return heroList;
     }
     
 }

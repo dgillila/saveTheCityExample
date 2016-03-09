@@ -11,8 +11,8 @@ package byui.cit260.savethecity.model;
  */
 public class Map {
 
-    private static final int NUM_ROWS = 5;
-    private static final int NUM_COLS = 5;
+    public static final int NUM_ROWS = 5;
+    public static final int NUM_COLS = 5;
 
     private Location[][] matrix;
 
@@ -41,7 +41,13 @@ public class Map {
 
         for (int row = 0; row < NUM_ROWS; row++) {
             for (int col = 0; col < NUM_COLS; col++) {
-                rtn += matrix[row][col].getType().name().charAt(0) + "\t";
+                rtn += matrix[row][col].getType().name().charAt(0);
+                
+                if(matrix[row][col].getHero() != null) {
+                    rtn += matrix[row][col].getHero().getName().charAt(0);
+                }
+                
+                rtn += "\t";
             }
             rtn += "\n";
         }
