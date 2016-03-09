@@ -18,11 +18,29 @@ public class Location implements Serializable {
     private Item item;
     private Hero hero;
     private Villain villain;
+    private int row;
+    private int col;
 
     public Location() {
         
     }
 
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
+    public void setCol(int col) {
+        this.col = col;
+    }
+    
     public LocationType getType() {
         return type;
     }

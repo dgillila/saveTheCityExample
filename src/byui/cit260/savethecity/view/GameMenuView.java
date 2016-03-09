@@ -5,6 +5,8 @@
  */
 package byui.cit260.savethecity.view;
 
+import byui.cit260.savethecity.controller.MovementController;
+import byui.cit260.savethecity.model.Location;
 import savethecity.SaveTheCity;
 
 /**
@@ -21,6 +23,7 @@ public class GameMenuView extends View {
                 + "\nS - Move South"
                 + "\nW - Move West"
                 + "\nM - View Map"
+                + "\nL - View Current Location"
                 + "\nQ - Quit");
     }
 
@@ -47,6 +50,9 @@ public class GameMenuView extends View {
             case 'M':
                 viewMap();
                 break;
+            case 'L':
+                viewCurrentLocation();
+                break;
             case 'Q':
                 return true;
             default:
@@ -62,22 +68,39 @@ public class GameMenuView extends View {
     }
 
     private void moveNorth() {
-        System.out.println("NOT IMPLEMENTED YET");
+        MovementController mc = new MovementController();
+        if(mc.moveNorth(SaveTheCity.getGame()) == false) {
+            System.out.println("You cannot move there");
+        }
     }
 
     private void moveEast() {
-        System.out.println("NOT IMPLEMENTED YET");
+        MovementController mc = new MovementController();
+        if(mc.moveEast(SaveTheCity.getGame()) == false) {
+            System.out.println("You cannot move there");
+        }
     }
 
     private void moveSouth() {
-        System.out.println("NOT IMPLEMENTED YET");
+        MovementController mc = new MovementController();
+        if(mc.moveSouth(SaveTheCity.getGame()) == false) {
+            System.out.println("You cannot move there");
+        }
     }
 
     private void moveWest() {
-        System.out.println("NOT IMPLEMENTED YET");
+        MovementController mc = new MovementController();
+        if(mc.moveWest(SaveTheCity.getGame()) == false) {
+            System.out.println("You cannot move there");
+        }
     }
 
     private void viewMap() {
         System.out.println(SaveTheCity.getGame().getMap().getMapString());
+    }
+    
+    private void viewCurrentLocation() {
+        Location l = SaveTheCity.getGame().getPlayer().getLocation();
+        System.out.println("You are at: (" + l.getRow() + ", " + l.getCol() + ")");
     }
 }
