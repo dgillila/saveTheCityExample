@@ -7,7 +7,8 @@ package byui.cit260.savethecity.view;
 
 import byui.cit260.savethecity.controller.ProgramController;
 import byui.cit260.savethecity.model.Player;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import savethecity.SaveTheCity;
 
 /**
@@ -15,6 +16,9 @@ import savethecity.SaveTheCity;
  * @author Daniel
  */
 public class StartProgramView {
+    
+    protected final PrintWriter console = SaveTheCity.getOutFile();
+    protected final BufferedReader keyboard = SaveTheCity.getInFile();
     
     public StartProgramView() {
         
@@ -40,18 +44,22 @@ public class StartProgramView {
         
         boolean isValidName = false;
         String name = "";
-        Scanner keyboard = new Scanner(System.in);
         
-        System.out.println("Please enter your name: ");
+        console.println("Please enter your name: ");
         
         while(!isValidName) {
-            String input = keyboard.nextLine();
+            String input = "";
+            try {
+                input = keyboard.readLine();
+            } catch(Exception e) {
+                ErrorView.display(this.getClass().getName(), "Error reading input");
+            }
             
             if(input == null || input.length() >= 2) {
                 isValidName = true;
                 name = input;
             } else {
-                System.out.println("Input is invalid - name must be at least 2 characters");
+                console.println("Input is invalid - name must be at least 2 characters");
             }
         }
         
@@ -67,14 +75,14 @@ public class StartProgramView {
                 "\n==========================";
                 
         
-        System.out.println(welcome);
+        console.println(welcome);
     }
     
     public void displayWelcomeMessage(String playerName) {
-        System.out.println("==============================");
-        System.out.println("Welcome " + playerName + ".");
-        System.out.println("Enjoy the game!");
-        System.out.println("==============================");
+        console.println("==============================");
+        console.println("Welcome " + playerName + ".");
+        console.println("Enjoy the game!");
+        console.println("==============================");
         
     }
     

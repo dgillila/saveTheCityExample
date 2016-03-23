@@ -42,7 +42,7 @@ public class HelpMenuView extends View {
             case 'Q':
                 return true;
             default:
-                System.out.println("Invalid option");
+                console.println("Invalid option");
                 break;
         }
         
@@ -50,18 +50,18 @@ public class HelpMenuView extends View {
     }
 
     private void aboutGame() {
-        System.out.println("About stuff");
+        console.println("About stuff");
     }
 
     private void howToPlay() {
-        System.out.println("How to play");
+        console.println("How to play");
     }
 
     private void objectives() {
-        System.out.println("Objectives stuff");
+        console.println("Objectives stuff");
     }
 
     private void movementHelp() {
-        System.out.println("Movement Help");
+        console.println("Movement Help");
     }
 }

@@ -44,7 +44,7 @@ public class MainMenuView extends View {
             case 'Q':
                 return true;
             default:
-                System.out.println("Invalid option");
+                console.println("Invalid option");
                 break;
         }
 
@@ -59,11 +59,25 @@ public class MainMenuView extends View {
     }
 
     private void loadSavedGame() {
-        System.out.println("CALLED START NEW GAME - NOT IMPLEMENTED YET");
+        console.println("Enter file name: ");
+        try {
+            String fileName = keyboard.readLine();
+            ProgramController.loadGame(fileName);
+            GameMenuView gmv = new GameMenuView();
+            gmv.display();
+        } catch (Exception e) {
+            ErrorView.display(this.getClass().getName(), "Error on input");
+        }
     }
 
     private void saveCurrentGame() {
-        System.out.println("CALLED START NEW GAME - NOT IMPLEMENTED YET");
+        console.println("Enter file name: ");
+        try {
+            String fileName = keyboard.readLine();
+            ProgramController.saveGame(fileName);
+        } catch (Exception e) {
+            ErrorView.display(this.getClass().getName(), "Error on input");
+        }
     }
 
     private void helpMenu() {

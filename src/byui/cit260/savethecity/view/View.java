@@ -5,7 +5,10 @@
  */
 package byui.cit260.savethecity.view;
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.util.Scanner;
+import savethecity.SaveTheCity;
 
 /**
  *
@@ -14,7 +17,9 @@ import java.util.Scanner;
 public abstract class View implements ViewInterface {
 
     protected String displayMessage;
-
+    protected final PrintWriter console = SaveTheCity.getOutFile();
+    protected final BufferedReader keyboard = SaveTheCity.getInFile();
+    
     public View() {
     }
 
@@ -40,19 +45,22 @@ public abstract class View implements ViewInterface {
 
     @Override
     public String getInput() {
-        Scanner keyboard = new Scanner(System.in);
         String input = " ";
         boolean validInput = false;
 
         while (!validInput) {
-            System.out.println("\n" + this.displayMessage);
+            console.println("\n" + this.displayMessage);
 
-            input = keyboard.nextLine();
+            try {
+                input = keyboard.readLine();
+            } catch(Exception e) {
+                throw new RuntimeException("Error reading input");
+            }
             input = input.trim();
             input = input.toUpperCase();
 
             if (input.length() < 1) {
-                System.out.println("\nInvalid value: You must enter a character.");
+                console.println("\nInvalid value: You must enter a character.");
                 continue;
             }
             break;

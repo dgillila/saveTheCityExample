@@ -5,7 +5,9 @@
  */
 package byui.cit260.savethecity.view;
 
+import byui.cit260.savethecity.controller.CollectionController;
 import byui.cit260.savethecity.controller.MovementController;
+import byui.cit260.savethecity.exception.LoseGameException;
 import byui.cit260.savethecity.model.Location;
 import savethecity.SaveTheCity;
 
@@ -56,7 +58,7 @@ public class GameMenuView extends View {
             case 'Q':
                 return true;
             default:
-                System.out.println("Invalid option");
+                console.println("Invalid option");
                 break;
         }
 
@@ -64,43 +66,49 @@ public class GameMenuView extends View {
     }
 
     private void searchPeople() {
-        System.out.println("NOT IMPLEMENTED YET");
+        CollectionController cc = new CollectionController();
+        if(cc.findHero(SaveTheCity.getPlayer())) {
+            console.println("You found " + SaveTheCity.getPlayer().getTeam().get(SaveTheCity.getPlayer().getTeam().size() - 1).getName());
+        } else {
+            System.err.println("You find nobody here");
+        }
     }
 
     private void moveNorth() {
         MovementController mc = new MovementController();
         if(mc.moveNorth(SaveTheCity.getGame()) == false) {
-            System.out.println("You cannot move there");
+            console.println("You cannot move there");
+            throw new LoseGameException("You lose");
         }
     }
 
     private void moveEast() {
         MovementController mc = new MovementController();
         if(mc.moveEast(SaveTheCity.getGame()) == false) {
-            System.out.println("You cannot move there");
+            console.println("You cannot move there");
         }
     }
 
     private void moveSouth() {
         MovementController mc = new MovementController();
         if(mc.moveSouth(SaveTheCity.getGame()) == false) {
-            System.out.println("You cannot move there");
+            console.println("You cannot move there");
         }
     }
 
     private void moveWest() {
         MovementController mc = new MovementController();
         if(mc.moveWest(SaveTheCity.getGame()) == false) {
-            System.out.println("You cannot move there");
+            console.println("You cannot move there");
         }
     }
 
     private void viewMap() {
-        System.out.println(SaveTheCity.getGame().getMap().getMapString());
+        console.println(SaveTheCity.getGame().getMap().getMapString());
     }
     
     private void viewCurrentLocation() {
         Location l = SaveTheCity.getGame().getPlayer().getLocation();
-        System.out.println("You are at: (" + l.getRow() + ", " + l.getCol() + ")");
+        console.println("You are at: (" + l.getRow() + ", " + l.getCol() + ")");
     }
 }

@@ -5,11 +5,13 @@
  */
 package byui.cit260.savethecity.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Daniel
  */
-public class Game {
+public class Game implements Serializable {
     
     private Player player;
     private Map map;

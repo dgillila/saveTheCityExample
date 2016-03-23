@@ -9,6 +9,11 @@ import byui.cit260.savethecity.model.Game;
 import byui.cit260.savethecity.model.Hero;
 import byui.cit260.savethecity.model.Map;
 import byui.cit260.savethecity.model.Player;
+import byui.cit260.savethecity.view.ErrorView;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import savethecity.SaveTheCity;
@@ -88,4 +93,31 @@ public class ProgramController {
         return heroList;
     }
     
+    
+    public static void saveGame(String filePath) {
+        try {
+            FileOutputStream fos = new FileOutputStream(filePath);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            
+            oos.writeObject(SaveTheCity.getGame());
+        } catch(Exception e) {
+            ErrorView.display("ProgramController", e.getMessage());
+        }
+    }
+    
+    public static void loadGame(String filePath) {
+        Game game = null;
+        
+        try {
+            FileInputStream fis = new FileInputStream(filePath);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            
+            game = (Game)ois.readObject();
+            
+            SaveTheCity.setGame(game);
+            SaveTheCity.setPlayer(game.getPlayer());
+        } catch (Exception e) {
+            ErrorView.display("ProgramController", e.getMessage());
+        }
+    }
 }

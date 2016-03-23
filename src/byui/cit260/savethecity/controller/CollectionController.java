@@ -6,6 +6,7 @@
 package byui.cit260.savethecity.controller;
 
 import byui.cit260.savethecity.model.Hero;
+import byui.cit260.savethecity.model.Location;
 import byui.cit260.savethecity.model.Player;
 
 /**
@@ -23,6 +24,17 @@ public class CollectionController {
         double totalMult = length * width * height;
         
         return totalMult / 3;
+    }
+    
+    public boolean findHero(Player p) {
+        Location l = p.getLocation();
+        if(l.getHero() != null) {
+            p.addHero(l.getHero());
+            l.setHero(null);
+            return true;
+        }
+        
+        return false;
     }
     
     public void addHeroToCollection(Hero h, Player p) {

@@ -5,10 +5,12 @@
  */
 package byui.cit260.savethecity.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Daniel
  */
-public class Villain {
+public class Villain implements Serializable {
     
 }
