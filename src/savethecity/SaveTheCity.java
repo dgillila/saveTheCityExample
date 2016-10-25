@@ -7,6 +7,7 @@ package savethecity;
 
 import byui.cit260.savethecity.model.Game;
 import byui.cit260.savethecity.model.Player;
+import byui.cit260.savethecity.view.SampleWelcomeView;
 import byui.cit260.savethecity.view.StartProgramView;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -30,35 +31,40 @@ public class SaveTheCity {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        StartProgramView startProgram = null;
-        try {
-            inFile = new BufferedReader(new InputStreamReader(System.in));
-            outFile = new PrintWriter(System.out, true);
-            String logPath = "log.txt";
-            logFile = new PrintWriter(logPath);
+        
             
-            startProgram = new StartProgramView();
-
-            startProgram.startProgram();
-        } catch (Exception e) {
-            e.printStackTrace();
-            startProgram.startProgram();
-        } finally {
-            try {
-                if (inFile != null) {
-                    inFile.close();
-                }
-                if (outFile != null) {
-                    outFile.close();
-                }
-                if (logFile != null) {
-                    logFile.close();
-                }
-            } catch (Exception ex) {
-                System.out.println("Error closing files");
-            }
-        }
+        SampleWelcomeView swv = new SampleWelcomeView();
+        swv.displayStartProgramView();
+        
+        
+//        StartProgramView startProgram = null;
+//        try {
+//            inFile = new BufferedReader(new InputStreamReader(System.in));
+//            outFile = new PrintWriter(System.out, true);
+//            String logPath = "log.txt";
+//            logFile = new PrintWriter(logPath);
+//            
+//            startProgram = new StartProgramView();
+//
+//            startProgram.startProgram();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            startProgram.startProgram();
+//        } finally {
+//            try {
+//                if (inFile != null) {
+//                    inFile.close();
+//                }
+//                if (outFile != null) {
+//                    outFile.close();
+//                }
+//                if (logFile != null) {
+//                    logFile.close();
+//                }
+//            } catch (Exception ex) {
+//                System.out.println("Error closing files");
+//            }
+//        }
 
     }
 
